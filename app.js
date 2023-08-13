@@ -9,11 +9,12 @@ app.use(bodyParser.json());
 app.get('/', (request, response) => {
 
     //console.log(request.body);
-
+    const returnData = {
+        "is_allowed": true
+      };
+    console.log(returnData)
     response.status(200).type('json').send(
-        {
-            "is_allowed": true
-          }
+        returnData
     );
 });
 
