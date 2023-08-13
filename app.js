@@ -6,7 +6,7 @@ const port = process.env.PORT || 3002;
 app.use(bodyParser.json());
 
 
-app.get('/', (request, response) => {
+app.post('/', (request, response) => {
 
     //console.log(request.body);
     const returnData = {
