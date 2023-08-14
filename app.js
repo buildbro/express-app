@@ -12,7 +12,7 @@ app.post('/', (request, response) => {
     const returnData = {
         "is_allowed": true
       };
-    console.log(returnData)
+    console.log(request.body)
     response.status(200).type('json').send(
         returnData
     );
