@@ -8,14 +8,30 @@ app.use(bodyParser.json());
 
 app.post('/', (request, response) => {
 
-    //console.log(request.body);
-    const returnData = {
-        "is_allowed": true
-      };
-    console.log(request.body)
-    response.status(200).type('json').send(
-        returnData
-    );
+    const requestPayload = request.body;
+    console.log(requestPayload)
+
+    $orgIp = '102.215.57.241';
+    if (requestPayload.context.ip_address == $orgIp) {
+
+        //this user is from the organisation network, continue with sign up.
+        response.status(200).type('json').send(
+            {
+                "is_allowed": true
+              }
+        );
+
+    } else {
+        //user has an IP address outside of the organisation network so disallow sign up.
+        response.status(200).type('json').send(
+            {
+                "is_allowed": false,
+                "reason": "You are not allow to sign up to this organisation",
+                "title": "Sign-up not allowed!"
+              }
+        )
+    }
+    
 });
 
 app.listen(port, () => {
